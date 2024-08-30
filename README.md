@@ -23,9 +23,9 @@ Posso anche creare la mia network e far ascoltare postgres su un'altro ip che no
 docker network create my_custom_network
 docker run --name my_postgres --network my_custom_network -e POSTGRES_PASSWORD=mysecretpassword -d postgres
 ```
-Oppure su un mio "IP"
+Oppure su un mio "IP" (attenzione, l'ip deve essere quello della macchina fisica che ospita docker)
 ```
-docker run --name my_postgres -e POSTGRES_PASSWORD=mysecretpassword -p 192.168.1.100:5432:5432 -d postgres
+docker run --name my_postgres -e POSTGRES_PASSWORD=mysecretpassword -p 192.168.1.XXX:5432:5432 -d postgres
 ```
 json risultante
 ```json
