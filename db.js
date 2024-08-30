@@ -4,7 +4,8 @@ const { Pool } = require('pg');
 const pool = new Pool({
   user: 'myusername',       // Sostituisci con il tuo username
   host: 'localhost',    // Sostituisci con l'host del tuo database, ad esempio 'db' se usi Docker
-  database: 'public', // Sostituisci con il nome del tuo database
+ // host: 'host.docker.internal',    // Sostituisci con l'host del tuo database, ad esempio 'db' se usi Docker
+  database: 'postgres', // Sostituisci con il nome del tuo database
   password: 'mypassword', // Sostituisci con la tua password
   port: 5432,           // Porta predefinita di PostgreSQL
 });
@@ -15,9 +16,12 @@ const query = async (text, params) => {
   try {
     const res = await client.query(text, params);
     return res;
+  }
+  catch(err){
+    console.log(JSON.stringify(err))
   } finally {
     client.release();
   }
 };
 
-module.exports = { query };
+module.exports = { query, pool };
