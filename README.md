@@ -23,7 +23,7 @@ conda create --prefix ./env pandas numpy matplotlib scikit-learn jupyter
 ```
 
 # POSTGRES #
-```
+``` sql
 CREATE TABLE utenti (
     id SERIAL PRIMARY KEY,
     nomeutente VARCHAR(255) NOT NULL,
