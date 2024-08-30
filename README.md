@@ -17,12 +17,12 @@ docker run -p 3000:3000 -v C:/Users/Daniele/Desktop/nodesito:/usr/src/app my-nod
 
 docker run -p 3000:3000 -v C:/Users/Daniele/Desktop/nodesito:/usr/src/app --name my-express-app my-node-app npm run start:dev
 ```
-**CONDA**
+# CONDA #
 ```
 conda create --prefix ./env pandas numpy matplotlib scikit-learn jupyter
 ```
 
-**POSTGRES**
+# POSTGRES #
 ```
 CREATE TABLE utenti (
     id SERIAL PRIMARY KEY,
