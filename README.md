@@ -1,5 +1,5 @@
 # DOCKER #
-```
+``` bash
 docker pull postgres
 docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
 
