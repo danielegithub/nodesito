@@ -66,4 +66,22 @@ INSERT INTO utenti (nomeutente) VALUES
     ('AnnaBianchi'),
     ('LucaVerdi'),
     ('GiuliaNeri');
+-- Per avere 1000 utenti casuali
+INSERT INTO utenti (nomeutente)
+SELECT 
+    concat('user_', floor(random() * 100000)::text || substr(md5(random()::text), 1, 6))
+FROM 
+    generate_series(1, 1000);
+-- Per avere 1000 utenti con email casuale
+INSERT INTO utenti (nomeutente)
+SELECT 
+    lower(concat(
+        substr(md5(random()::text), 1, 8), 
+        '@',
+        substr(md5(random()::text), 1, 5),
+        '.com'
+    ))
+FROM 
+    generate_series(1, 1000);
+
 ```
