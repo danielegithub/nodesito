@@ -18,6 +18,19 @@ e poi lanciare docker, in modo da garantire la persistenza e non il volume tempo
 ```
 docker run --name postgresql -e POSTGRES_USER=myusername -e POSTGRES_PASSWORD=mypassword -p 5432:5432 -v postgres_data:/var/lib/postgresql/data -d postgres
 ```
+Posso anche creare la mia network e far ascoltare postgres su un'altro ip che non sia localhost
+```
+docker network create my_custom_network
+docker run --name my_postgres --network my_custom_network -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+```
+Oppure su un mio "IP"
+```
+docker run --name my_postgres -e POSTGRES_PASSWORD=mysecretpassword -p 192.168.1.100:5432:5432 -d postgres
+```
+json risultante
+```json
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my_postgres
+```
 
 PER AVVIARE NODE
 ```
