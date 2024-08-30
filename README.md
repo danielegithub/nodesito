@@ -19,7 +19,16 @@ docker run -p 3000:3000 -v C:/Users/Daniele/Desktop/nodesito:/usr/src/app --name
 ```
 # CONDA #
 ```
-conda create --prefix ./env pandas numpy matplotlib scikit-learn jupyter
+conda create --prefix ./env pandas numpy matplotlib scikit-learn 
+
+#
+# To activate this environment, use
+#
+#     $ conda activate "C:\Users\Daniele\Desktop\Machine Learning\env"
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
 ```
 
 # POSTGRES #
