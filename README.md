@@ -12,15 +12,18 @@ docker run --name my-pgadmin -p 82:80 -e 'PGADMIN_DEFAULT_EMAIL=user@domain.loca
 ```
 
 PER AVVIARE NODE
+```
 docker run -p 3000:3000 -v C:/Users/Daniele/Desktop/nodesito:/usr/src/app my-node-app npm run start:dev
 
 docker run -p 3000:3000 -v C:/Users/Daniele/Desktop/nodesito:/usr/src/app --name my-express-app my-node-app npm run start:dev
-** CONDA **
+```
+**CONDA**
+```
 conda create --prefix ./env pandas numpy matplotlib scikit-learn jupyter
+```
 
-
-** POSTGRES **
-
+**POSTGRES**
+```
 CREATE TABLE utenti (
     id SERIAL PRIMARY KEY,
     nomeutente VARCHAR(255) NOT NULL,
@@ -33,3 +36,4 @@ INSERT INTO utenti (nomeutente) VALUES
     ('AnnaBianchi'),
     ('LucaVerdi'),
     ('GiuliaNeri');
+```
