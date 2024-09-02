@@ -1,23 +1,5 @@
 # DOCKER #
-``` shell
-docker pull postgres
-docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
 
-
-
-docker pull dpage/pgadmin4:latest
-
-docker run --name my-pgadmin -p 82:80 -e 'PGADMIN_DEFAULT_EMAIL=user@domain.local' -e 'PGADMIN_DEFAULT_PASSWORD=postgresmaster'-d dpage/pgadmin4
-```
-
-Creare il volume data è importante 
-```
-docker volume create postgres_data
-```
-e poi lanciare docker, in modo da garantire la persistenza e non il volume temporaneo che crea nell'immagine
-```
-docker run --name postgresql -e POSTGRES_USER=myusername -e POSTGRES_PASSWORD=mypassword -p 5432:5432 -v postgres_data:/var/lib/postgresql/data -d postgres
-```
 Posso anche creare la mia network e far ascoltare postgres su un'altro ip che non sia localhost
 ```
 docker network create my_custom_network
@@ -31,7 +13,35 @@ json risultante
 ```json
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my_postgres
 ```
+# Creare node
+per prima cosa realizzo il docker file nella mia directory locale dove ho il progetto node
+```
+# Usa l'immagine base di Node.js
+FROM node:18
 
+# Crea una directory per l'applicazione
+WORKDIR /app
+
+# Copia i file package.json e package-lock.json
+COPY package*.json ./
+
+# Installa le dipendenze
+RUN npm install
+
+# Copia il resto dei file dell'applicazione
+COPY . .
+
+# Espone la porta su cui l'applicazione ascolterà
+# EXPOSE 3000
+
+# Comando per avviare l'applicazione
+CMD [ "npm", "start" ]
+
+```
+Successivamente build la mia immagine
+```
+docker build -t node-postgres-app .
+```
 PER AVVIARE NODE
 ```
 docker run -p 3000:3000 -v C:/Users/Daniele/Desktop/nodesito:/usr/src/app my-node-app npm run start:dev
